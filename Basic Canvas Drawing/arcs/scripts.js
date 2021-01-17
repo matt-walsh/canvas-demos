@@ -3,18 +3,29 @@
     
     if(canvas && canvas.getContext){
         //Set Width and Height of Canvas
-        canvas.width=150;
-        canvas.height=150;
+        canvas.width=1000;
+        canvas.height=1000;
 
         let context = canvas.getContext("2d");
         if(context){
-            context.fillStyle = "green";
-            context.fillRect(20,20,100,100);
-
-            context.strokeStyle = "rgba(0,0,255,1)";
+            context.strokeStyle = "blue";
+            context.fillStyle = "red";
             context.lineWidth = 5;
 
-            context.strokeRect(20,20,100,100);
+            //Quarter Arc
+            context.beginPath();
+            context.arc(50,150,100,0,0.5*Math.PI);
+            context.stroke();
+            //Half Arc (Counter-Clockwise)
+            context.beginPath();
+            context.arc(300,150,100,0,Math.PI,true);
+            context.stroke();
+
+            //Full Circle
+            context.beginPath();
+            context.arc(550,150,100,0,2*Math.PI);
+            context.fill();
+            context.stroke();
         }
     }
 })();

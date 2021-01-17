@@ -3,18 +3,47 @@
     
     if(canvas && canvas.getContext){
         //Set Width and Height of Canvas
-        canvas.width=150;
-        canvas.height=150;
+        canvas.width=1000;
+        canvas.height=1000;
 
         let context = canvas.getContext("2d");
         if(context){
-            context.fillStyle = "green";
-            context.fillRect(20,20,100,100);
-
-            context.strokeStyle = "rgba(0,0,255,1)";
+            context.strokeStyle = "blue";
             context.lineWidth = 5;
 
-            context.strokeRect(20,20,100,100);
+            //Bezier
+            context.beginPath();
+            context.moveTo(50, 200);
+            context.bezierCurveTo(50, 100, 200, 100, 200, 150);
+            context.stroke();
+
+            //Show Control Points
+            context.strokeStyle = "red";
+            context.lineWidth = 1;
+            context.beginPath();
+            context.moveTo(50, 200);
+            context.lineTo(50,100);
+            context.lineTo(200,100);
+            context.lineTo(200,150);
+            context.stroke();
+
+
+            //Quadratic
+            context.strokeStyle = "green";
+            context.lineWidth = 5;
+            context.beginPath();
+            context.moveTo(400, 200);
+            context.quadraticCurveTo(400,100,600,150);
+            context.stroke();
+
+            //Show Control Points
+            context.strokeStyle = "red";
+            context.lineWidth = 1;
+            context.beginPath();
+            context.moveTo(400, 200);
+            context.lineTo(400, 100);
+            context.lineTo(600, 150);
+            context.stroke();
         }
     }
 })();

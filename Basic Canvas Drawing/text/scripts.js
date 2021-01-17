@@ -3,18 +3,35 @@
     
     if(canvas && canvas.getContext){
         //Set Width and Height of Canvas
-        canvas.width=150;
-        canvas.height=150;
+        canvas.width=1000;
+        canvas.height=1000;
 
         let context = canvas.getContext("2d");
         if(context){
-            context.fillStyle = "green";
-            context.fillRect(20,20,100,100);
+            let string = "The Quick Brown Fox Jumped Over The Lazy Dog.";
+            let startX = 20;
+            //Font
+            context.font = "25px Georgia";
+            context.fillText(string, startX, 60);
 
-            context.strokeStyle = "rgba(0,0,255,1)";
-            context.lineWidth = 5;
+            //Fill Style
+            context.fillStyle = "blue";
+            context.fillText(string, startX, 100);
 
-            context.strokeRect(20,20,100,100);
+            //Stroke and Fill
+            context.font = "32px Verdana";
+            context.fillStyle = "yellow";
+            context.strokeStyle = "rgba(0,255,0,0.8)"
+            context.fillText(string, startX, 160);
+            context.strokeText(string, startX, 160);
+
+            //Measure Text
+            let textWidth = context.measureText(string);
+            context.beginPath();
+            context.strokeStyle = "black";
+            context.moveTo(startX, 170);
+            context.lineTo(startX + Math.round(textWidth.width), 170);
+            context.stroke();
         }
     }
 })();
